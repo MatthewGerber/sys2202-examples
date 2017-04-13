@@ -58,14 +58,12 @@ public class Sample {
 
 	public static void main(String[] args) throws IOException {
 
+		// Create an AWS S3 client.
 		AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
 
+		// Work with a new bucket and object.
 		String bucketName = "my-first-s3-bucket-" + UUID.randomUUID();
 		String key = "MyObjectKey";
-
-		System.out.println("===========================================");
-		System.out.println("Getting Started with Amazon S3");
-		System.out.println("===========================================\n");
 
 		try {
 			
@@ -74,19 +72,19 @@ public class Sample {
 			 * unique, so once a bucket name has been taken by any user, you
 			 * can't create another bucket with that same name.
 			 *
-			 * You can optionally specify a location for your bucket if you want
-			 * to keep your data closer to your applications or users.
 			 */
 			System.out.println("Creating bucket " + bucketName + "\n");
 			s3.createBucket(bucketName);
 
 			/*
-			 * List the buckets in your account
+			 * List the buckets in your account.
 			 */
 			System.out.println("Listing buckets");
+			
 			for (Bucket bucket : s3.listBuckets()) {
 				System.out.println(" - " + bucket.getName());
 			}
+			
 			System.out.println();
 
 			/*
@@ -98,7 +96,9 @@ public class Sample {
 			 * specific to your applications.
 			 */
 			System.out.println("Uploading a new object to S3 from a file\n");
-			s3.putObject(new PutObjectRequest(bucketName, key, createSampleFile()));
+			File sampleFile = createSampleFile();
+			PutObjectRequest putRequest = new PutObjectRequest(bucketName, key, sampleFile); 
+			s3.putObject(putRequest);
 
 			/*
 			 * Download an object - When you download an object, you get all of
@@ -113,7 +113,8 @@ public class Sample {
 			 * ETags, and selectively downloading a range of an object.
 			 */
 			System.out.println("Downloading an object");
-			S3Object object = s3.getObject(new GetObjectRequest(bucketName, key));
+			GetObjectRequest getRequest = new GetObjectRequest(bucketName, key);
+			S3Object object = s3.getObject(getRequest);
 			System.out.println("Content-Type: " + object.getObjectMetadata().getContentType());
 			displayTextInputStream(object.getObjectContent());
 
@@ -126,10 +127,14 @@ public class Sample {
 			 * operation to retrieve additional results.
 			 */
 			System.out.println("Listing objects");
-			ObjectListing objectListing = s3.listObjects(new ListObjectsRequest().withBucketName(bucketName).withPrefix("My"));
+			
+			ListObjectsRequest listRequest = new ListObjectsRequest().withBucketName(bucketName).withPrefix("My");
+			ObjectListing objectListing = s3.listObjects(listRequest);
+			
 			for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
 				System.out.println(" - " + objectSummary.getKey() + "  " + "(size = " + objectSummary.getSize() + ")");
 			}
+			
 			System.out.println();
 
 			/*
@@ -173,6 +178,7 @@ public class Sample {
 	 * @throws IOException
 	 */
 	private static File createSampleFile() throws IOException {
+		
 		File file = File.createTempFile("aws-java-sdk-", ".txt");
 		file.deleteOnExit();
 
@@ -196,15 +202,18 @@ public class Sample {
 	 * @throws IOException
 	 */
 	private static void displayTextInputStream(InputStream input) throws IOException {
+		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+		
 		while (true) {
+			
 			String line = reader.readLine();
 			if (line == null)
 				break;
 
 			System.out.println("    " + line);
 		}
+		
 		System.out.println();
 	}
-
 }
