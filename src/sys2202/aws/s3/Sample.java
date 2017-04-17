@@ -57,7 +57,7 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 public class Sample {
 
 	public static void main(String[] args) throws IOException {
-
+		
 		// Create an AWS S3 client.
 		AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
 
