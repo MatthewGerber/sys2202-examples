@@ -27,6 +27,7 @@ import java.util.UUID;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.Bucket;
@@ -59,7 +60,7 @@ public class Sample {
 	public static void main(String[] args) throws IOException {
 		
 		// Create an AWS S3 client.
-		AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+		AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion(Regions.US_EAST_1).build();
 
 		// Work with a new bucket and object.
 		String bucketName = "my-first-s3-bucket-" + UUID.randomUUID();
