@@ -8,6 +8,7 @@ public class WordCount {
 
 	public static void main(String[] args) throws Exception {
 
+		// set up a new mapreduce job for submission
 		JobConf conf = new JobConf(WordCount.class);
 		conf.setJobName("wordcount");
 
@@ -28,6 +29,7 @@ public class WordCount {
 		conf.setOutputKeyClass(Text.class);
 		conf.setOutputValueClass(IntWritable.class);
 
+		// submit the job
 		JobClient.runJob(conf);
 	}
 }
