@@ -1,4 +1,4 @@
-package io;
+package sys2202.io;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,7 +18,7 @@ public class FileSystem {
 		
 		// print the paths
 		for(String path : paths) {
-			System.out.println("\t" + path);;
+			System.out.println("\t" + path);
 		}
 		
 		System.out.println("There were " + paths.size() + " path(s):");
