@@ -9,27 +9,26 @@ public class WordCount {
 	public static void main(String[] args) throws Exception {
 
 		// set up a new mapreduce job for submission
-		JobConf conf = new JobConf(WordCount.class);
-		conf.setJobName("wordcount");
+		JobConf job = new JobConf(WordCount.class);
+		job.setJobName("wordcount");
+		
+		// tell mapreduce where to find input and how to read it (as text)
+		FileInputFormat.setInputPaths(job, new Path(args[0]));
+		job.setInputFormat(TextInputFormat.class);
 
 		// tell mapreduce which mapper and reducer to use
-		conf.setMapperClass(WordCountMapper.class);
-		conf.setCombinerClass(WordCountReducer.class);
-		conf.setReducerClass(WordCountReducer.class);
-
-		// tell mapreduce where to find input and how to read it (as text)
-		FileInputFormat.setInputPaths(conf, new Path(args[0]));
-		conf.setInputFormat(TextInputFormat.class);
-
-		// tell mapreduce where to write output and how to write it (as text)
-		FileOutputFormat.setOutputPath(conf, new Path(args[1]));
-		conf.setOutputFormat(TextOutputFormat.class);
+		job.setMapperClass(WordCountMapper.class);
+		job.setReducerClass(WordCountReducer.class);
 
 		// tell mapreduce about the key and value types we're going to output
-		conf.setOutputKeyClass(Text.class);
-		conf.setOutputValueClass(IntWritable.class);
+		job.setOutputKeyClass(Text.class);
+		job.setOutputValueClass(IntWritable.class);
+				
+		// tell mapreduce where to write output and how to write it (as text)
+		FileOutputFormat.setOutputPath(job, new Path(args[1]));
+		job.setOutputFormat(TextOutputFormat.class);
 
 		// submit the job
-		JobClient.runJob(conf);
+		JobClient.runJob(job);
 	}
 }
