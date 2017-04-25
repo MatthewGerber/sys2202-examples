@@ -7,7 +7,7 @@ import org.apache.hadoop.mapred.*;
 public class WordCount {
 
 	/* 
-	 * An example MapReduce job that processes text files and counts the number
+	 * An example MapReduce program that processes text files and counts the number
 	 * of occurrences of each word.
 	 */
 	public static void main(String[] args) throws Exception {

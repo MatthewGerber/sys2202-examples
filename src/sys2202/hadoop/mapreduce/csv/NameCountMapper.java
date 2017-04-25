@@ -25,13 +25,15 @@ public class NameCountMapper extends MapReduceBase implements Mapper<LongWritabl
 	@Override
 	public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
 
-		// the CSV file has a header row, which needs to be skipped. the keys for text input 
-		// files are the file positions, so the header row corresponds to a key of zero. skip this line.
+		// the CSV file has a header line, which needs to be skipped. the keys for text input 
+		// files are the file positions, and the header line corresponds to a key of zero. so, 
+		// we can skip the header line by checking for a key (file position) of zero and returning
+		// immediately with no intermediate KVP emission if such a key is found.
 		if (key.get() == 0) {
 			return;
 		}
 
-		// parse the record
+		// parse the csv line
 		String csvLine = value.toString();
 		String[] record = parser.parseLine(csvLine);
 

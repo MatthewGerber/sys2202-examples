@@ -15,7 +15,7 @@ import org.apache.hadoop.mapred.TextOutputFormat;
 public class NameCount {
 
 	/* 
-	 * An example MapReduce job that processes CSV files of users and counts the number
+	 * An example MapReduce program that processes CSV files of users and counts the number
 	 * of occurrences of each first name.
 	 */
 	public static void main(String[] args) throws IOException {
