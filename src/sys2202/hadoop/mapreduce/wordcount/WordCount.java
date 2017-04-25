@@ -1,4 +1,4 @@
-package sys2202.hadoop.mapreduce;
+package sys2202.hadoop.mapreduce.wordcount;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.*;
@@ -6,6 +6,10 @@ import org.apache.hadoop.mapred.*;
 
 public class WordCount {
 
+	/* 
+	 * An example MapReduce job that processes text files and counts the number
+	 * of occurrences of each word.
+	 */
 	public static void main(String[] args) throws Exception {
 
 		// set up a new mapreduce job for submission
