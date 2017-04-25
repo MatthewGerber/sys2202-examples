@@ -1,4 +1,4 @@
-package sys2202.hadoop.mapreduce.wordcount;
+package sys2202.hadoop.mapreduce.text;
 
 import java.io.IOException;
 import java.util.Iterator;

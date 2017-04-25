@@ -1,4 +1,4 @@
-package sys2202.hadoop.mapreduce.wordcount;
+package sys2202.hadoop.mapreduce.text;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -22,8 +22,7 @@ public class WordCountMapper extends MapReduceBase implements Mapper<LongWritabl
 		while (tokenizer.hasMoreTokens()) {
 			
 			// create the intermediate key
-			Text word = new Text();
-			word.set(tokenizer.nextToken());
+			Text word = new Text(tokenizer.nextToken());
 			
 			// create the intermediate value
 			IntWritable one = new IntWritable(1);

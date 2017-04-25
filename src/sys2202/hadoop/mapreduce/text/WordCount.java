@@ -1,4 +1,4 @@
-package sys2202.hadoop.mapreduce.wordcount;
+package sys2202.hadoop.mapreduce.text;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.*;

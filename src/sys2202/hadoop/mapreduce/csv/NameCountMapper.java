@@ -36,10 +36,13 @@ public class NameCountMapper extends MapReduceBase implements Mapper<LongWritabl
 		String csvLine = value.toString();
         String[] record = parser.parseLine(csvLine);
         
-        // emit the intermediate key-value pair
+        // create the intermediate key
         Text firstName = new Text(record[1]);
+        
+        // create the intermediate value
         IntWritable one = new IntWritable(1);
         
+        // emit the intermediate key-value pair
         output.collect(firstName, one);
 	}
 }
