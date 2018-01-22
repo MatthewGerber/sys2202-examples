@@ -3,14 +3,11 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="lib/opencsv-3.9.jar"/>
-	<classpathentry kind="lib" path="lib/postgresql-9.4.1212.jar"/>
 	<classpathentry kind="lib" path="lib/gson-2.6.2.jar"/>
-	<classpathentry kind="lib" path="/Users/matthewgerber/Desktop/hadoop-2.8.0/share/hadoop/common/hadoop-common-2.8.0.jar"/>
 	<classpathentry kind="con" path="com.amazonaws.eclipse.sdk.AWS_JAVA_SDK"/>
-	<classpathentry kind="lib" path="/Users/matthewgerber/Desktop/hadoop-2.8.0/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.8.0.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/Users/matthewgerber/Desktop/hadoop-2.8.0/share/doc/hadoop/api/"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="/Users/msg8u/GitHub/sys2202-examples/lib/hadoop-common-3.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/msg8u/GitHub/sys2202-examples/lib/hadoop-mapreduce-client-core-3.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/msg8u/GitHub/sys2202-examples/lib/aws-java-sdk-1.11.268.jar"/>
+	<classpathentry kind="lib" path="/Users/msg8u/GitHub/sys2202-examples/lib/postgresql-42.2.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
