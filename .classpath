@@ -5,9 +5,9 @@
 	<classpathentry kind="lib" path="lib/opencsv-3.9.jar"/>
 	<classpathentry kind="lib" path="lib/gson-2.6.2.jar"/>
 	<classpathentry kind="con" path="com.amazonaws.eclipse.sdk.AWS_JAVA_SDK"/>
-	<classpathentry kind="lib" path="/Users/msg8u/GitHub/sys2202-examples/lib/hadoop-common-3.0.0.jar"/>
-	<classpathentry kind="lib" path="/Users/msg8u/GitHub/sys2202-examples/lib/hadoop-mapreduce-client-core-3.0.0.jar"/>
-	<classpathentry kind="lib" path="/Users/msg8u/GitHub/sys2202-examples/lib/aws-java-sdk-1.11.268.jar"/>
-	<classpathentry kind="lib" path="/Users/msg8u/GitHub/sys2202-examples/lib/postgresql-42.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/hadoop-common-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/hadoop-mapreduce-client-core-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/aws-java-sdk-1.11.268.jar"/>
+	<classpathentry kind="lib" path="lib/postgresql-42.2.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
