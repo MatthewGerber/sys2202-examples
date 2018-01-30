@@ -7,11 +7,11 @@ public class LifeWithoutObjects {
 
 	public static void main(String[] args) throws Exception {
 
-		// let's first see a painful way of structuring our data. create an accelerometer reading of <0,0,-1> (device lying on its back)
+		// let's first see a painful way of structuring our data. create an accelerometer reading of <1,2,3>
 		ArrayList<Double> accelerationVector = new ArrayList<Double>();
-		accelerationVector.add(0.0);  // X 
-		accelerationVector.add(0.0);  // Y   we'll have to keep track of which indices hold which acceleration vector elements 
-		accelerationVector.add(1.0);  // Z
+		accelerationVector.add(1.0);  // X 
+		accelerationVector.add(2.0);  // Y   we'll have to keep track of which indices hold which acceleration vector elements 
+		accelerationVector.add(3.0);  // Z
 		
 		// we cannot refer to elements by name, which is a pain.
 		System.out.println("Y acceleration:  " + accelerationVector.get(1));  
