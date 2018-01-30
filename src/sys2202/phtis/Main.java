@@ -15,10 +15,6 @@ public class Main {
 		Datum accelerometerDatum = new AccelerometerDatum(deviceId, timestamp, 1, 2, 3);
 		System.out.println(accelerometerDatum.toString());
 		
-		// can't change restricted fields
-	    //accelerometerDatum.deviceId = "2342-234-32-3";   // ERROR
-		///accelerometerDatum.setDeviceId("2342-234-32-3"); // ERROR
-		
 		// polymorphism handles varying behaviors of derived classes.
 		Datum locationDatum = new LocationDatum(deviceId, timestamp, 35, -20, 10);
 		System.out.println(locationDatum.toString());
