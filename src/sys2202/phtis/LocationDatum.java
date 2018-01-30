@@ -32,7 +32,7 @@ public class LocationDatum extends Datum {
 		this.accuracyInMeters = accuracyInMeters;
 	}
 	
-	public Datum Copy() {
+	public Datum copy() {
 		
 		return new LocationDatum(getDeviceId(), getTimestamp(), latitude, longitude, accuracyInMeters);
 	}

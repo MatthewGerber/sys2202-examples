@@ -28,7 +28,7 @@ public abstract class Datum {
 		this.timestamp = timestamp;
 	}
 
-	public abstract Datum Copy();
+	public abstract Datum copy();
 	
 	public String toString() {
 		

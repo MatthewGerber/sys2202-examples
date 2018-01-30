@@ -7,22 +7,26 @@ public class LifeWithoutObjects {
 
 	public static void main(String[] args) throws Exception {
 
-		// let's first see a painful way of structuring our data. create an accelerometer reading of <0,0,-1> (device lying on back)
-		ArrayList<Float> acceleration = new ArrayList<Float>();
-		acceleration.add(0f);  // X 
-		acceleration.add(0f);  // Y   we'll have to keep track of which indices hold which acceleration vector values 
-		acceleration.add(1f);  // Z
+		// let's first see a painful way of structuring our data. create an accelerometer reading of <0,0,-1> (device lying on its back)
+		ArrayList<Double> accelerationVector = new ArrayList<Double>();
+		accelerationVector.add(0.0);  // X 
+		accelerationVector.add(0.0);  // Y   we'll have to keep track of which indices hold which acceleration vector elements 
+		accelerationVector.add(1.0);  // Z
 		
-		// but wait, what about time and the device ID? we cannot add them to the list.
+		// we cannot refer to elements by name, which is a pain.
+		System.out.println("Y acceleration:  " + accelerationVector.get(1));  
+		
+		// what about time and the device ID? we cannot add them to the list.
 		LocalDateTime timestamp = LocalDateTime.parse("2017-01-31T11:30");
-		// acceleration.add(timestamp); // ERROR
+	    // accelerationVector.add(timestamp); // ERROR
 		
-		// okay fine. let's bundle our acceleration reading together with the timestamp in a new array.
-		ArrayList<Object> accelerometerDatum = new ArrayList<Object>();
-		accelerometerDatum.add(acceleration);
-		accelerometerDatum.add(timestamp);
+		// okay fine. let's bundle our acceleration reading together with the timestamp in a new type of array list.
+		ArrayList<Object> accelerometerDatumAndTimestamp = new ArrayList<Object>();
+		accelerometerDatumAndTimestamp.add(accelerationVector);
+		accelerometerDatumAndTimestamp.add(timestamp);
 		
-		// print the datum timestamp -- what an ugly mess!
-		System.out.println(accelerometerDatum.get(1).toString());
+		// print the Y acceleration element -- what an ugly mess!
+		Double yAcceleration = ((ArrayList<Double>) accelerometerDatumAndTimestamp.get(0)).get(1);
+		System.out.println("Y acceleration:  " + yAcceleration);
 	}
 }

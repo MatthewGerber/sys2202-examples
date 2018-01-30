@@ -32,7 +32,7 @@ public class AccelerometerDatum extends Datum {
 		this.z = z;
 	}
 	
-	public Datum Copy() {
+	public Datum copy() {
 		
 		return new AccelerometerDatum(getDeviceId(), getTimestamp(), x, y, z);
 	}

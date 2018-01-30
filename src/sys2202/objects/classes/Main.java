@@ -4,17 +4,22 @@ import java.time.LocalDateTime;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
-		String deviceId = "234-2-432-r-32-23";
+		String deviceId = "asdfasdfasdf";
 		LocalDateTime timestamp = LocalDateTime.parse("2017-01-31T11:30");
+		double x = 1;
+		double y = 2;
+		double z = 3;
 		
-		AccelerometerDatum accelerometerDatum = new AccelerometerDatum(deviceId, timestamp, 1, 2, 3);
-		System.out.println(accelerometerDatum.toString());
+		AccelerometerDatum accelerometerDatum = new AccelerometerDatum(deviceId, timestamp, x, y, z);
 		
-		// can't change private fields
-	    // accelerometerDatum.deviceId = "2342-234-32-3";   // ERROR
-		// accelerometerDatum.setDeviceId("2342-234-32-3"); // ERROR
+		// with objects, we can refer to data fields/attributes by name
+		System.out.println(accelerometerDatum.getY());
+		
+		// we can also protect ourselves from undesired field modifications
+	    // accelerometerDatum.y = -5000;   // ERROR at compile time.
 
+		// accelerometerDatum.setY(5000);	// Need to add the setY method, which will throw an exception at run time.
 	}
 }

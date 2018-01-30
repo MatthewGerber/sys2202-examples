@@ -6,17 +6,26 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		String deviceId = "234-2-432-r-32-23";
+		String deviceId = "asdfasdf";
 		LocalDateTime timestamp = LocalDateTime.parse("2017-01-31T11:30");
 		
 		// can't instantiate abstract classes
 		// Datum datum = new Datum(deviceId, timestamp); // ERROR
 		
-		Datum accelerometerDatum = new AccelerometerDatum(deviceId, timestamp, 1, 2, 3);
+		double x = 1;
+		double y = 2;
+		double z = 3;
+		
+		Datum accelerometerDatum = new AccelerometerDatum(deviceId, timestamp, x, y, z);
 		System.out.println(accelerometerDatum.toString());
 		
-		// polymorphism handles varying behaviors of derived classes.
-		Datum locationDatum = new LocationDatum(deviceId, timestamp, 35, -20, 10);
+		// polymorphism handles varying behaviors of derived classes. the toString method for LocationDatum objects
+		// behaves differently from the toString method of AccelerometerDatum objects.
+		double lat = 35;
+		double lon = -20;
+		double accuracy = 10;
+		
+		Datum locationDatum = new LocationDatum(deviceId, timestamp, lat, lon, accuracy);
 		System.out.println(locationDatum.toString());
 	}
 }
