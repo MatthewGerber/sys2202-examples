@@ -20,6 +20,6 @@ public class Main {
 		// we can also protect ourselves from undesired field modifications
 	    // accelerometerDatum.y = -5000;   // ERROR at compile time.
 
-		// accelerometerDatum.setY(5000);	// Need to add the setY method, which will throw an exception at run time.
+		// accelerometerDatum.setY(-5000);	// Need to add the setY method, which should throw an exception at run time.
 	}
 }
