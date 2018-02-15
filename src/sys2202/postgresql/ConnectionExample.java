@@ -14,7 +14,7 @@ public class ConnectionExample {
 		String host = "localhost";
 		
 		// Port:  Obtain the port from within PgAdmin (right-click the server and select the Connection tab). Yours may differ from what is used below.
-		int port = 5433; 
+		int port = 5434; 
 		
 		// Database:  Enter the database you wish to work with (also shown within PgAdmin).
 		String database = "postgres";
@@ -57,5 +57,10 @@ public class ConnectionExample {
 		}	
 		
 		select.close();
+		
+		// Execute an invalid SQL INSERT statement on the PostgreSQL server. Why is this invalid?
+		Statement badInsert = connection.createStatement();
+		badInsert.execute("INSERT INTO my_test_schema.fruit (name, color) values ('Apple','Green');");
+		badInsert.close();
 	}
 }
