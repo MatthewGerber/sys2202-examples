@@ -58,9 +58,16 @@ public class ConnectionExample {
 		
 		select.close();
 		
-		// Execute an invalid SQL INSERT statement on the PostgreSQL server. Why is this invalid?
-		Statement badInsert = connection.createStatement();
-		badInsert.execute("INSERT INTO my_test_schema.fruit (name, color) values ('Apple','Green');");
-		badInsert.close();
+		// Execute an invalid SQL INSERT statement on the PostgreSQL server. Why does the following code throw an exception?
+		try
+		{
+			Statement badInsert = connection.createStatement();
+			badInsert.execute("INSERT INTO my_test_schema.fruit (name, color) values ('Apple','Green');");
+			badInsert.close();
+		}
+		catch(Exception ex)
+		{
+			System.err.println("Something bad happened:  " + ex);
+		}
 	}
 }
