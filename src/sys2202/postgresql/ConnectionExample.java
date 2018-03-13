@@ -31,13 +31,15 @@ public class ConnectionExample {
 		
 		// Create a schema and table
 		Statement createSchemaAndTable = connection.createStatement();
-		createSchemaAndTable.execute("CREATE SCHEMA my_test_schema;\n" + 
-		                             "CREATE TABLE my_test_schema.fruit\n" + 
+		createSchemaAndTable.execute(
+                                     "CREATE SCHEMA my_test_schema;\n" + 
+                                     "CREATE TABLE my_test_schema.fruit\n" + 
                                      "(\n" + 
                                      "  id SERIAL PRIMARY KEY,\n" + 
                                      "  name CHARACTER VARYING NOT NULL,\n" + 
                                      "  color CHARACTER VARYING CHECK (color = 'Red' OR color = 'Yellow')\n" + 
-                                     ");");
+                                     ");"
+                                     );
 		createSchemaAndTable.close();
 		
 		// Execute an SQL INSERT statement on the PostgreSQL server. This statement inserts two rows into the fruit table.
