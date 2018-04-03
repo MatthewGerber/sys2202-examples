@@ -8,17 +8,17 @@ public class AgeCounting {
 
 	public static void main(String[] args)
 	{		
-		// create a list of 100 million random ages from 1-100
-		System.out.println("Creating ages list...");
+		// create a list of 100 million people randomly aged from 1-100
+		System.out.println("Creating list of people...");
 		ArrayList<Integer> ages = new ArrayList<Integer>(100000000);
 		Random r = new Random();
-		for(int i = 1; i <= 100000000; ++i)
+		for (int i = 1; i <= 100000000; ++i)
 		{
 		    int age = r.nextInt(100) + 1;
 			ages.add(age);
 		}
 		
-		// time how long it takes to count the number of people with each age
+		// time how long it takes to count the number of people with each age (i.e., the age histogram)
 		System.out.println("Getting age counts...");
 		
 		long startTime = System.currentTimeMillis();
@@ -32,7 +32,8 @@ public class AgeCounting {
 		
 		long endTime = System.currentTimeMillis();
 		long elapsedTime = endTime - startTime;
-		System.out.println("Age counting took " + elapsedTime + "ms.");
+		
+		System.out.println("Done! Age counting took " + elapsedTime + "ms.");
 	}
 	
 	private static int HowManyPeopleHaveAge(ArrayList<Integer> ages, int age)
@@ -43,7 +44,7 @@ public class AgeCounting {
 		{
 		    if(ages.get(i) == age)
 		    {
-		    	count = count + 1;
+		    		count = count + 1;
 		    }
 		}
 		

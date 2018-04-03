@@ -25,6 +25,8 @@ public class AgeCountRunner implements Runnable {
 	@Override
 	public void run() {
 		
+		System.out.println("Counting people aged " + startAge + "-" + endAge + "...");
+		
 		this.ageCount = new Hashtable<Integer, Integer>();
 
 		for(int age = startAge; age <= endAge; ++age)
@@ -32,18 +34,20 @@ public class AgeCountRunner implements Runnable {
 			int count = HowManyPeopleHaveAge(this.ages, age);
 		    this.ageCount.put(age,  count);
 		}
+		
+		System.out.println("Done counting people aged " + startAge + "-" + endAge + "...");
 	}
 	
 	private int HowManyPeopleHaveAge(ArrayList<Integer> ages, int age)
 	{
 		int count = 0;
 		
-		for(int i = 0; i < ages.size(); ++i)
+		for (int i = 0; i < ages.size(); ++i) 
 		{
-		    if(ages.get(i) == age)
-		    {
-		    	count = count + 1;
-		    }
+			if (ages.get(i) == age) 
+			{
+				count = count + 1;
+			}
 		}
 		
 		return count;

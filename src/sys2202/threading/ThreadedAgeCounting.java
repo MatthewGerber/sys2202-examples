@@ -8,8 +8,8 @@ public class ThreadedAgeCounting {
 
 	public static void main(String[] args) throws InterruptedException 
     {	
-		// create a list of 100 million random ages from 1-100
-		System.out.println("Creating ages list...");
+		// create a list of 100 million people randomly aged from 1-100
+		System.out.println("Creating list of people...");
 		ArrayList<Integer> ages = new ArrayList<Integer>(100000000);
 		Random r = new Random();
 		for (int i = 1; i <= 100000000; ++i)
@@ -23,12 +23,12 @@ public class ThreadedAgeCounting {
 
 		long startTime = System.currentTimeMillis();
 
-		// count folks with ages 1-12
+		// count people aged 1-12
 		AgeCountRunner runner1 = new AgeCountRunner(ages, 1, 12);
 		Thread thread1 = new Thread(runner1);
 		thread1.start();
 		
-		// ...and so on
+		// ...and so on for the other age groups
 		AgeCountRunner runner2 = new AgeCountRunner(ages, 13, 24);
 		Thread thread2 = new Thread(runner2);
 		thread2.start();
@@ -68,6 +68,7 @@ public class ThreadedAgeCounting {
 		thread8.join();
 		
 		// merge results from the individual count runners into a single merged hashtable
+		System.out.println("Merging intermediate results...");
 		Hashtable<Integer, Integer> mergedAgeCount = new Hashtable<Integer, Integer>();
 		MergeCounts(runner1.GetAgeCount(), mergedAgeCount);
 		MergeCounts(runner2.GetAgeCount(), mergedAgeCount);
@@ -80,12 +81,13 @@ public class ThreadedAgeCounting {
 		
 		long endTime = System.currentTimeMillis();
 		long elapsedTime = endTime - startTime;
-		System.out.println("Age counting took " + elapsedTime + "ms.");
+		
+		System.out.println("Done! Age counting took " + elapsedTime + "ms.");
 	}
 	
 	private static void MergeCounts(Hashtable<Integer, Integer> runnerAgeCount, Hashtable<Integer, Integer> mergedAgeCount)
 	{
-		for(int age : runnerAgeCount.keySet())
+		for (int age : runnerAgeCount.keySet())
 		{
 			int count = runnerAgeCount.get(age);
 			mergedAgeCount.put(age, count);
