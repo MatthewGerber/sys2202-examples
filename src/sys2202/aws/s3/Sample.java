@@ -57,117 +57,64 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
  */
 public class Sample {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		
-		// Create an AWS S3 client.
+		// create the client we'll use to connect to S3
 		AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion(Regions.US_EAST_1).build();
-
-		// Work with a new bucket and object.
-		String bucketName = "my-first-s3-bucket-" + UUID.randomUUID();
-		String key = "MyObjectKey";
-
-		try {
-			
-			/*
-			 * Create a new S3 bucket - Amazon S3 bucket names are globally
-			 * unique, so once a bucket name has been taken by any user, you
-			 * can't create another bucket with that same name.
-			 *
-			 */
-			System.out.println("Creating bucket " + bucketName + "\n");
-			s3.createBucket(bucketName);
-
-			/*
-			 * List the buckets in your account.
-			 */
-			System.out.println("Listing buckets");
-			
-			for (Bucket bucket : s3.listBuckets()) {
-				System.out.println(" - " + bucket.getName());
-			}
-			
-			System.out.println();
-
-			/*
-			 * Upload an object to your bucket - You can easily upload a file to
-			 * S3, or upload directly an InputStream if you know the length of
-			 * the data in the stream. You can also specify your own metadata
-			 * when uploading to S3, which allows you set a variety of options
-			 * like content-type and content-encoding, plus additional metadata
-			 * specific to your applications.
-			 */
-			System.out.println("Uploading a new object to S3 from a file\n");
-			File sampleFile = createSampleFile();
-			PutObjectRequest putRequest = new PutObjectRequest(bucketName, key, sampleFile); 
-			s3.putObject(putRequest);
-
-			/*
-			 * Download an object - When you download an object, you get all of
-			 * the object's metadata and a stream from which to read the
-			 * contents. It's important to read the contents of the stream as
-			 * quickly as possibly since the data is streamed directly from
-			 * Amazon S3 and your network connection will remain open until you
-			 * read all the data or close the input stream.
-			 *
-			 * GetObjectRequest also supports several other options, including
-			 * conditional downloading of objects based on modification times,
-			 * ETags, and selectively downloading a range of an object.
-			 */
-			System.out.println("Downloading an object");
-			GetObjectRequest getRequest = new GetObjectRequest(bucketName, key);
-			S3Object object = s3.getObject(getRequest);
-			System.out.println("Content-Type: " + object.getObjectMetadata().getContentType());
-			displayTextInputStream(object.getObjectContent());
-
-			/*
-			 * List objects in your bucket by prefix - There are many options
-			 * for listing the objects in your bucket. Keep in mind that buckets
-			 * with many objects might truncate their results when listing their
-			 * objects, so be sure to check if the returned object listing is
-			 * truncated, and use the AmazonS3.listNextBatchOfObjects(...)
-			 * operation to retrieve additional results.
-			 */
-			System.out.println("Listing objects");
-			
-			ListObjectsRequest listRequest = new ListObjectsRequest().withBucketName(bucketName).withPrefix("My");
-			ObjectListing objectListing = s3.listObjects(listRequest);
-			
-			for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
-				System.out.println(" - " + objectSummary.getKey() + "  " + "(size = " + objectSummary.getSize() + ")");
-			}
-			
-			System.out.println();
-
-			/*
-			 * Delete an object - Unless versioning has been turned on for your
-			 * bucket, there is no way to undelete an object, so use caution
-			 * when deleting objects.
-			 */
-			System.out.println("Deleting an object\n");
-			s3.deleteObject(bucketName, key);
-
-			/*
-			 * Delete a bucket - A bucket must be completely empty before it can
-			 * be deleted, so remember to delete any objects from your buckets
-			 * before you try to delete them.
-			 */
-			System.out.println("Deleting bucket " + bucketName + "\n");
-			s3.deleteBucket(bucketName);
-			
-		} catch (AmazonServiceException ase) {
-			
-			System.out.println("Caught an AmazonServiceException, which means your request made it to Amazon S3, but was rejected with an error response for some reason.");
-			System.out.println("Error Message:    " + ase.getMessage());
-			System.out.println("HTTP Status Code: " + ase.getStatusCode());
-			System.out.println("AWS Error Code:   " + ase.getErrorCode());
-			System.out.println("Error Type:       " + ase.getErrorType());
-			System.out.println("Request ID:       " + ase.getRequestId());
-			
-		} catch (AmazonClientException ace) {
-			
-			System.out.println("Caught an AmazonClientException, which means the client encountered a serious internal problem while trying to communicate with S3, such as not being able to access the network.");
-			System.out.println("Error Message: " + ace.getMessage());
+		
+		// list buckets in our S3 account
+		System.out.println("Listing buckets in our S3 account...\n");
+		for (Bucket bucket : s3.listBuckets()) {
+			System.out.println("\t" + bucket.getName());
 		}
+		
+		System.out.println();
+
+		// create a new bucket to experiment with
+		String bucketName = "msg8u-sys2202-bucket"; // set the bucket name -- this must be unique, so you'll want to use your ID instead of msg8u
+		System.out.println("Creating bucket " + bucketName + "...\n");
+		s3.createBucket(bucketName);
+
+		// list buckets in our S3 account
+		System.out.println("Listing buckets in our S3 account...\n");
+		for (Bucket bucket : s3.listBuckets()) {
+			System.out.println("\t" + bucket.getName());
+		}
+
+		System.out.println();
+
+		// create and upload a sample file
+		System.out.println("Uploading a new object to S3 from a local file...\n");
+		File sampleFile = createSampleFile();
+		String objectKey = "my-test-file";
+		PutObjectRequest putRequest = new PutObjectRequest(bucketName, objectKey, sampleFile);
+		s3.putObject(putRequest);
+
+		// list objects in our new bucket -- notice the new object is now present
+		System.out.println("Listing objects in our new bucket...\n");
+		ListObjectsRequest listRequest = new ListObjectsRequest().withBucketName(bucketName);
+		ObjectListing objectListing = s3.listObjects(listRequest);
+		for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
+			System.out.println("\t" + objectSummary.getKey() + "  " + "(size = " + objectSummary.getSize() + ")");
+		}
+
+		System.out.println();
+
+		// download and display the sample file that we just uploaded
+		System.out.println("Downloading the sample file...\n");
+		GetObjectRequest getRequest = new GetObjectRequest(bucketName, objectKey);
+		S3Object object = s3.getObject(getRequest);
+		displayTextInputStream(object.getObjectContent());
+
+		// delete the sample file from S3
+		System.out.println("Deleting the sample file...\n");
+		s3.deleteObject(bucketName, objectKey);
+
+		// delete the bucket
+		System.out.println("Deleting the bucket...\n");
+		s3.deleteBucket(bucketName);
+
+		System.out.println("All done!");	
 	}
 
 	/**
@@ -180,15 +127,11 @@ public class Sample {
 	 */
 	private static File createSampleFile() throws IOException {
 		
-		File file = File.createTempFile("aws-java-sdk-", ".txt");
+		File file = File.createTempFile("test", ".txt");
 		file.deleteOnExit();
 
 		Writer writer = new OutputStreamWriter(new FileOutputStream(file));
-		writer.write("abcdefghijklmnopqrstuvwxyz\n");
-		writer.write("01234567890112345678901234\n");
-		writer.write("!@#$%^&*()-=[]{};':',.<>/?\n");
-		writer.write("01234567890112345678901234\n");
-		writer.write("abcdefghijklmnopqrstuvwxyz\n");
+		writer.write("This is a test file.");
 		writer.close();
 
 		return file;
@@ -209,10 +152,11 @@ public class Sample {
 		while (true) {
 			
 			String line = reader.readLine();
-			if (line == null)
+			if (line == null) {
 				break;
+			}
 
-			System.out.println("    " + line);
+			System.out.println("\t" + line);
 		}
 		
 		System.out.println();
