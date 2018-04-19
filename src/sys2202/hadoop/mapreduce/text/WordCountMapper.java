@@ -13,6 +13,10 @@ import org.apache.hadoop.mapred.Reporter;
 
 public class WordCountMapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, IntWritable> {
 	
+	/*
+	 * This map method is called once per line of text. It breaks the line into words and emits 
+	 * intermediate key-value pairs. 
+	 */
 	public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
 		
 		// tokenize the input value

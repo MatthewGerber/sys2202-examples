@@ -12,6 +12,9 @@ import org.apache.hadoop.mapred.Reporter;
 
 public class WordCountReducer extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
 	
+	/*
+	 * This reduce method is called once per array of sorted intermediate key-value pairs.
+	 */
 	public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
 		
 		// sum up the values we receive
