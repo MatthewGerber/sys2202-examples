@@ -17,6 +17,10 @@ public class NameCount {
 	/* 
 	 * An example MapReduce program that processes CSV files of users and counts the number
 	 * of occurrences of each first name.
+	 * 
+	 * This main method takes two arguments:  (1) the path to the input data (e.g., 
+	 * a file or directory), and (2) the path to the output directory (must not
+	 * already exist).
 	 */
 	public static void main(String[] args) throws IOException {
 
