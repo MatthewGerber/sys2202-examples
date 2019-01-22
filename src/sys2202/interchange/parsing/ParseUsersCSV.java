@@ -14,16 +14,17 @@ public class ParseUsersCSV {
 
 	public static void main(String[] args) throws Exception {
 
-		String csvPath = "data/users.csv";
-
-		CSVReader reader = null;
-
-		reader = new CSVReader(new FileReader(csvPath), CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1);
+		String path = "data/users.csv";
+		FileReader file = new FileReader(path);
+		CSVReader csv = new CSVReader(file, CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1);
 
 		ArrayList<User> users = new ArrayList<User>();
 
-		String[] record;
-		while ((record = reader.readNext()) != null) {
+		// read first record
+		String[] record = csv.readNext();
+		
+		// while we have a record...
+		while (record != null) {
 
 			// get fields
 			int id = Integer.parseInt(record[0]);
@@ -41,9 +42,12 @@ public class ParseUsersCSV {
 			// create user and add to list
 			User user = new User(id, firstName, lastName, dateOfBirth, addresses);
 			users.add(user);
+			
+			// get next record
+			record = csv.readNext();
 		}
 		
-		reader.close();
+		csv.close();
 
 		// print users
 		for (User user : users) {
