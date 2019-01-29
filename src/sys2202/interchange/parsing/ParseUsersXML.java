@@ -39,19 +39,30 @@ public class ParseUsersXML {
 			
 			// get first name
 			Element nameNode = (Element) userNode.getElementsByTagName("name").item(0);
-			String firstName = nameNode.getElementsByTagName("first").item(0).getTextContent();			
+			String firstName = nameNode.getElementsByTagName("first")
+					                   .item(0)
+					                   .getTextContent();			
 			
 			// get last name
-			String lastName = nameNode.getElementsByTagName("last").item(0).getTextContent();
+			String lastName = nameNode.getElementsByTagName("last")
+					                  .item(0)
+					                  .getTextContent();
 			
 			// get date of birth
-			String dateOfBirthString = userNode.getElementsByTagName("date_of_birth").item(0).getTextContent();
+			String dateOfBirthString = userNode.getElementsByTagName("date_of_birth")
+					                           .item(0)
+					                           .getTextContent();
+			
 			LocalDate dateOfBirth = LocalDate.parse(dateOfBirthString);
 			
-			// get addresses
-			ArrayList<String> addresses = new ArrayList<String>();
-			Element addressesNode = (Element) userNode.getElementsByTagName("addresses").item(0);			
+			// get address nodes			
+			Element addressesNode = (Element) userNode.getElementsByTagName("addresses")
+					                                  .item(0);		
+			
 			NodeList addressNodes = addressesNode.getElementsByTagName("address");
+			
+			// loop over address nodes and gather address strings into a list
+			ArrayList<String> addresses = new ArrayList<String>();
 			for(int j = 0; j < addressNodes.getLength(); ++j) {
 				
 				Element addressNode = (Element) addressNodes.item(j);
