@@ -18,23 +18,24 @@ public class ParseUsersJSON {
 		// parse JSON file
 		FileReader jsonFile = new FileReader("data/users.json");
 		JsonParser jsonParser = new JsonParser(); 
-		JsonObject parsedJSON = jsonParser.parse(jsonFile).getAsJsonObject();
+		JsonArray usersJsonArray = jsonParser.parse(jsonFile).getAsJsonArray();
 
 		// store all users in a list
 		ArrayList<User> users = new ArrayList<User>();
 
-		// read each user object into a User object and store in our list
-		JsonArray usersJsonArray = parsedJSON.getAsJsonArray("users");
 		for (int i = 0; i < usersJsonArray.size(); ++i) {
 
-			JsonObject userJsonObject = usersJsonArray.get(i).getAsJsonObject();
+			JsonObject userJsonObject = usersJsonArray.get(i)
+					                                  .getAsJsonObject();
 
 			// get id
 			JsonElement idJsonElement = userJsonObject.get("id");
 			int id = idJsonElement.getAsInt();
 
 			// get first name
-			JsonObject nameJsonObject = userJsonObject.get("name").getAsJsonObject();
+			JsonObject nameJsonObject = userJsonObject.get("name")
+					                                  .getAsJsonObject();
+			
 			JsonElement firstNameJsonElement = nameJsonObject.get("first");
 			String firstName = firstNameJsonElement.getAsString();
 

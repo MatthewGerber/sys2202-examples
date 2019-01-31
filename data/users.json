@@ -1,27 +1,25 @@
-{
-  "users": [
-    {
-      "id": 1,
-      "name": {
-        "first": "Matthew",
-        "last": "Gerber"
-      },
-      "date_of_birth": "1982-09-21",
-      "addresses": [
-        "123 W. Main, Charlottesville, VA 22904",
-        "36 Roth Rd., Waynesboro, VA 22980"
-      ]
+[
+  {
+    "id": 1,
+    "name": {
+      "first": "Matthew",
+      "last": "Gerber"
     },
-    {
-      "id": 2,
-      "name": {
-        "first": "Jane",
-        "last": "Doe"
-      },
-      "date_of_birth": "1986-03-23",
-      "addresses": [
-        "543 W. Main, Charlottesville, VA 22904"
-      ]
-    }
-  ]
-}
+    "date_of_birth": "1982-09-21",
+    "addresses": [
+      "123 W. Main, Charlottesville, VA 22904",
+      "36 Roth Rd., Waynesboro, VA 22980"
+    ]
+  },
+  {
+    "id": 2,
+    "name": {
+      "first": "Jane",
+      "last": "Doe"
+    },
+    "date_of_birth": "1986-03-23",
+    "addresses": [
+      "543 W. Main, Charlottesville, VA 22904"
+    ]
+  }
+]
