@@ -32,24 +32,34 @@ public class ConnectionExample {
 		// Create a schema and table
 		Statement createSchemaAndTable = connection.createStatement();
 		createSchemaAndTable.execute(
-                                     "CREATE SCHEMA my_test_schema;\n" + 
-                                     "CREATE TABLE my_test_schema.fruit\n" + 
-                                     "(\n" + 
-                                     "  id SERIAL PRIMARY KEY,\n" + 
-                                     "  name CHARACTER VARYING NOT NULL,\n" + 
-                                     "  color CHARACTER VARYING CHECK (color = 'Red' OR color = 'Yellow')\n" + 
+                                     "CREATE SCHEMA my_test_schema;" + 
+                                     "CREATE TABLE my_test_schema.fruit" + 
+                                     "(" + 
+                                     "  id SERIAL PRIMARY KEY," + 
+                                     "  name CHARACTER VARYING NOT NULL," + 
+                                     "  color CHARACTER VARYING CHECK (color = 'Red' OR color = 'Yellow')" + 
                                      ");"
                                      );
 		createSchemaAndTable.close();
 		
 		// Execute an SQL INSERT statement on the PostgreSQL server. This statement inserts two rows into the fruit table.
 		Statement insert = connection.createStatement();
-		insert.execute("INSERT INTO my_test_schema.fruit (name, color) values ('Apple','Red'),('Banana','Yellow');");
+		insert.execute(
+				       "INSERT INTO my_test_schema.fruit" + 
+		               "(name, color)" + 
+				       "VALUES" + 
+		               "('Apple','Red')," + 
+				       "('Banana','Yellow');"
+		               );
 		insert.close();
 		
 		// Execute an SQL SELECT statement on the PostgreSQL server. This statement selects all yellow fruit.
 		Statement select = connection.createStatement();
-		ResultSet results = select.executeQuery("SELECT id,name,color FROM my_test_schema.fruit WHERE color = 'Yellow'");
+		ResultSet results = select.executeQuery(
+				                                "SELECT id,name,color " + 
+		                                        "FROM my_test_schema.fruit " + 
+				                                "WHERE color = 'Yellow';"
+		                                       );
 		
 		// Iterate over the results.
 		while(results.next()) {
@@ -64,7 +74,12 @@ public class ConnectionExample {
 		try
 		{
 			Statement badInsert = connection.createStatement();
-			badInsert.execute("INSERT INTO my_test_schema.fruit (name, color) values ('Apple','Green');");
+			badInsert.execute(
+					          "INSERT INTO my_test_schema.fruit" + 
+			                  "(name, color)" + 
+					          "VALUES" + 
+			                  "('Apple','Green');"
+					         );
 			badInsert.close();
 		}
 		catch(Exception ex)
