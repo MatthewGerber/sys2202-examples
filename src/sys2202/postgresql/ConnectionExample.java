@@ -23,11 +23,11 @@ public class ConnectionExample {
 		String url = "jdbc:postgresql://" + host + ":" + port  + "/" + database;
 		
 		// Open the connection to the PostgreSQL server. Be sure to replace "test" with your password below.
-		Properties props = new Properties();
-		props.setProperty("user","postgres");
-		props.setProperty("password","test");
-		props.setProperty("ssl","false");
-		Connection connection = DriverManager.getConnection(url, props);
+		Properties connectionProperties = new Properties();
+		connectionProperties.setProperty("user","postgres");
+		connectionProperties.setProperty("password","test");
+		connectionProperties.setProperty("ssl","false");
+		Connection connection = DriverManager.getConnection(url, connectionProperties);
 		
 		// Create a schema and table
 		Statement createSchemaAndTable = connection.createStatement();
