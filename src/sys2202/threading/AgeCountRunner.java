@@ -3,8 +3,8 @@ package sys2202.threading;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class AgeCountRunner implements Runnable {
-
+public class AgeCountRunner implements Runnable 
+{
 	private ArrayList<Integer> ages;
 	private int startAge;
 	private int endAge;
@@ -25,7 +25,7 @@ public class AgeCountRunner implements Runnable {
 	@Override
 	public void run() {
 		
-		System.out.println("Counting people aged " + startAge + "-" + endAge + "...");
+		System.out.println("Counting people aged " + startAge + "-" + endAge);
 		
 		this.ageCount = new Hashtable<Integer, Integer>();
 
