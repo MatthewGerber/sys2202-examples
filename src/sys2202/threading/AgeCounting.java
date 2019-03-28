@@ -29,7 +29,7 @@ public class AgeCounting {
 		Hashtable<Integer, Integer> ageCount = new Hashtable<Integer, Integer>();
 		for (int age = 1; age <= 100; ++age) 
 		{
-			System.out.print("..." + age);
+			System.out.println("..." + age);
 			int count = HowManyPeopleHaveAge(ages, age);
 			ageCount.put(age, count);
 		}
