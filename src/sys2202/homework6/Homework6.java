@@ -1,4 +1,4 @@
-package sys2202.homework7;
+package sys2202.homework6;
 
 import java.io.IOException;
 
@@ -12,12 +12,12 @@ import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapred.TextInputFormat;
 import org.apache.hadoop.mapred.TextOutputFormat;
 
-public class ReadingCount {
+public class Homework6 {
 
 	public static void main(String[] args) throws IOException {
 
 		// set up a new mapreduce job for submission
-		JobConf job = new JobConf(ReadingCount.class);
+		JobConf job = new JobConf(Homework6.class);
 		job.setJobName("readingcount");
 
 		// tell mapreduce where to find input and how to read it (as text)
@@ -25,8 +25,8 @@ public class ReadingCount {
 		job.setInputFormat(TextInputFormat.class);
 
 		// tell mapreduce which mapper and reducer to use
-		job.setMapperClass(ReadingCountMapper.class);
-		job.setReducerClass(ReadingCountReducer.class);
+		job.setMapperClass(Homework6Mapper.class);
+		job.setReducerClass(Homework6Reducer.class);
 
 		// tell mapreduce about the key and value types we're going to output
 		job.setOutputKeyClass(Text.class);

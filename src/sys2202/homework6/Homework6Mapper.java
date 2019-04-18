@@ -1,4 +1,4 @@
-package sys2202.homework7;
+package sys2202.homework6;
 
 import java.io.IOException;
 
@@ -12,11 +12,11 @@ import org.apache.hadoop.mapred.Reporter;
 
 import com.opencsv.CSVParser;
 
-public class ReadingCountMapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, IntWritable> {
+public class Homework6Mapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, IntWritable> {
 
 	private CSVParser parser;
 
-	public ReadingCountMapper() {
+	public Homework6Mapper() {
 
 		parser = new CSVParser();
 

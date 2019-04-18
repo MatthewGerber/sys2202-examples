@@ -1,4 +1,4 @@
-package sys2202.homework7;
+package sys2202.homework6;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -10,7 +10,7 @@ import org.apache.hadoop.mapred.OutputCollector;
 import org.apache.hadoop.mapred.Reducer;
 import org.apache.hadoop.mapred.Reporter;
 
-public class ReadingCountReducer extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
+public class Homework6Reducer extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
 
 	@Override
 	public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
